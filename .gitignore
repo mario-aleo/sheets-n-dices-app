@@ -1,0 +1,30 @@
+## editors
+/.idea
+/.vscode
+
+## system files
+.DS_Store
+
+## temp folders
+/.tmp/
+
+## code coverage folders
+coverage/
+
+## demo folders
+demo/
+
+## build folders
+dist/
+
+## npm
+node_modules/
+npm-debug.log*
+
+## yarn
+yarn-debug.log*
+yarn-error.log*
+
+## bower
+bower_components/
+bower-*.json*
