@@ -1,81 +1,72 @@
 import { LitElement, html, css } from 'lit-element';
-import { openWc } from './open-wc-logo';
+import { installRouter, installOfflineWatcher } from 'pwa-helpers';
+import '@polymer/app-layout/app-header/app-header';
+import '@polymer/app-layout/app-toolbar/app-toolbar';
+import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
+import './snd-home/snd-home';
 
 class SheetsNDices extends LitElement {
   static get properties() {
     return {
-      title: { type: String },
+      route: {
+        type: String,
+        reflect: true,
+        attribute: false,
+      },
+      offline: {
+        type: Boolean,
+        reflect: true,
+        attribute: false,
+      },
     };
-  }
-
-  constructor() {
-    super();
-    this.title = 'open-wc';
   }
 
   static get styles() {
     return [
       css`
         :host {
-          text-align: center;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          font-size: calc(10px + 2vmin);
-          color: #1a2b42;
+          display: block;
         }
 
-        header {
-          margin: auto;
-        }
-
-        svg {
-          animation: app-logo-spin infinite 20s linear;
-        }
-
-        a {
-          color: #217ff9;
-        }
-
-        .app-footer {
-          color: #a8a8a8;
-          font-size: calc(10px + 0.5vmin);
-        }
-
-        @keyframes app-logo-spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+        app-header {
+          background-color: red;
         }
       `,
     ];
   }
 
+  constructor() {
+    super();
+
+    installRouter((location, event) => {
+      if (event && event.type === 'click') window.scrollTo(0, 0);
+      this.route = location;
+    });
+
+    installOfflineWatcher(offline => {
+      this.offline = offline;
+    });
+  }
+
   render() {
     return html`
-      <header class="app-header">
-        ${openWc}
-        <h1>${this.title}</h1>
-        <p>Edit <code>src/sheets-n-dices.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/developing/#examples"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
-      </header>
-      <p class="app-footer">
-        🚽 Made with love by
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/open-wc">open-wc</a>.
-      </p>
+      <app-header fixed effects="waterfall">
+        <app-toolbar>
+          <div main-title>Sheets 'n Dices</div>
+        </app-toolbar>
+      </app-header>
+
+      ${this.renderRoute()}
     `;
+  }
+
+  renderRoute() {
+    switch (this.route) {
+      default:
+        return html`
+          <snd-home></snd-home>
+        `;
+    }
   }
 }
 

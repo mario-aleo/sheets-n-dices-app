@@ -16,26 +16,26 @@
     "build": "rimraf dist && rollup -c rollup.config.js",
     "start:build": "http-server dist -o -c-1",
     "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o -c-1",
-    "start": "owc-dev-server --open ./src"
+    "start": "owc-dev-server --open"
   },
   "devDependencies": {
-    "@open-wc/eslint-config": "^0.4.1",
-    "@open-wc/prettier-config": "^0.1.0",
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.0",
-    "husky": "^1.0.0",
-    "lint-staged": "^8.0.0",
+    "@open-wc/building-rollup": "^0.4.1",
+    "@open-wc/eslint-config": "^0.4.1",
+    "@open-wc/polyfills-loader": "^0.3.0",
+    "@open-wc/prettier-config": "^0.1.0",
+    "@open-wc/testing": "^0.12.1",
     "@open-wc/testing-karma": "^2.0.0",
-    "webpack-merge": "^4.1.5",
     "@open-wc/testing-karma-bs": "^1.0.0",
-    "@open-wc/testing": "^0.11.1",
-    "@open-wc/building-rollup": "^0.3.0",
+    "eslint-plugin-lit": "^1.0.0",
     "http-server": "^0.11.1",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.0.0",
+    "owc-dev-server": "^0.3.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.6.0",
-    "@open-wc/polyfills-loader": "^0.3.0",
-    "owc-dev-server": "^0.3.0",
-    "eslint-plugin-lit": "^1.0.0"
+    "webpack-merge": "^4.1.5"
   },
   "lint-staged": {
     "*.js": [
@@ -47,7 +47,11 @@
   "name": "sheets-n-dices",
   "license": "MIT",
   "dependencies": {
+    "@polymer/app-layout": "^3.0.2",
+    "firebase": "^6.0.2",
+    "lit-element": "^2.0.1",
     "lit-html": "^1.0.0",
-    "lit-element": "^2.0.1"
+    "pwa-helpers": "^0.9.1",
+    "redux": "^4.0.1"
   }
 }
