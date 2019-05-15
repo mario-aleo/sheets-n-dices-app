@@ -10,7 +10,6 @@ class SndHome extends LitElement {
       css`
         :host {
           display: block;
-          min-height: 125vh;
         }
       `,
     ];
@@ -18,7 +17,8 @@ class SndHome extends LitElement {
 
   render() {
     return html`
-      Home
+      <span>Home</span>
+      <a href="create">Create</a>
     `;
   }
 }
